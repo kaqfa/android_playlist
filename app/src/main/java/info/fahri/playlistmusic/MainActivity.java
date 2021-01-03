@@ -9,6 +9,8 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.util.Log;
@@ -17,12 +19,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private LaguViewModel laguViewModel;
-    List<Lagu> list_lagu;
+    ArrayList<Lagu> list_lagu;
+    RecyclerView recListLagu;
+    PlayListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +36,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        recListLagu = findViewById(R.id.rec_list_lagu);
+
+        list_lagu = new ArrayList<>();
+        adapter = new PlayListAdapter(list_lagu);
+        recListLagu.setAdapter(adapter);
+        recListLagu.setLayoutManager(new LinearLayoutManager(this));
+
         laguViewModel = new ViewModelProvider(this).get(LaguViewModel.class);
-        laguViewModel.getSemuaLagu().observe(this, list_lagu -> {
-            for(Lagu lagu: list_lagu){
-                Log.d("list_lagu: ", String.valueOf(lagu));
-            }
+        laguViewModel.getSemuaLagu().observe(this, playlist -> {
+            list_lagu.clear();
+            list_lagu.addAll(playlist);
+            adapter.notifyDataSetChanged();
         });
 
         FloatingActionButton fab = findViewById(R.id.fab);

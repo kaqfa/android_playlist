@@ -16,17 +16,12 @@ public class FormInputLagu extends AppCompatActivity {
 
     EditText edtJudul, edtArtis, edtTahun, edtLink;
     Spinner spnGenre;
-    AppDatabase db;
     private LaguViewModel laguViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_input_lagu);
-
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "db-musik").build();
-        laguViewModel = new ViewModelProvider(this).get(LaguViewModel.class);
 
         edtJudul = findViewById(R.id.edt_judul);
         edtArtis = findViewById(R.id.edt_artis);
@@ -47,6 +42,8 @@ public class FormInputLagu extends AppCompatActivity {
         String genre = spnGenre.getSelectedItem().toString();
 
         final Lagu lagu = new Lagu(judul, artis, tahun, genre, link);
+
+        laguViewModel = new ViewModelProvider(this).get(LaguViewModel.class);
         laguViewModel.insert(lagu);
         Log.d("list_lagu", "insert lagu baru - "+lagu.judul);
         finish();

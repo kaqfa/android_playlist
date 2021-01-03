@@ -26,4 +26,6 @@ public class LaguViewModel extends AndroidViewModel {
     public void insert(Lagu lagu){
         repository.insert(lagu);
     }
+
+    public void delete(Lagu lagu) { repository.delete(lagu); }
 }

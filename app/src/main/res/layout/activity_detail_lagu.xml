@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="20dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
+    tools:context=".DetailLaguActivity">
+
+    <TextView
+        android:id="@+id/txt_detail_judul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#82B1FF"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="Judul Lagu (2021)"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_detail_artis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Nama Artis"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_detail_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Genre"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/btn_to_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="#80D8FF"
+        android:onClick="toYoutube"
+        android:text="Menuju Youtube" />
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF8A80"
+        android:onClick="delete"
+        android:text="Hapus" />
+
+</LinearLayout>

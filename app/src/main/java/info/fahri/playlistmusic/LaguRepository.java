@@ -26,4 +26,10 @@ public class LaguRepository {
             laguDAO.insertLagu(lagu);
         });
     }
+
+    void delete(Lagu lagu){
+        AppDatabase.dbWriter.execute(() -> {
+            laguDAO.deleteLagu(lagu);
+        });
+    }
 }

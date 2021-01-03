@@ -12,7 +12,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Lagu.class}, version = 3, exportSchema = false)
+@Database(entities = {Lagu.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract LaguDAO laguDAO();
 
@@ -24,8 +24,11 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "word_database")
-                            .addCallback(dbCallback).build();
+                            AppDatabase.class, "playlist_musik")
+                            .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()
+                            .addCallback(dbCallback)
+                            .build();
                 }
             }
         }
@@ -37,14 +40,15 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-
             dbWriter.execute(() -> {
                 LaguDAO laguDAO = INSTANCE.laguDAO();
                 laguDAO.insertLagu(
-                        new Lagu("Tak Sengaja", "Dewi", 1995,
-                                "Pop", "https://youtube.com"),
-                        new Lagu("Bujangan", "Om ir", 1992,
-                                "Pop", "https://youtube.com")
+                        new Lagu("Memories", "Maroon 5", 2019,
+                                "Pop", "https://youtu.be/SlPhMPnQ58k"),
+                        new Lagu("Believer", "Imagine Dragons", 2017,
+                                "Rock", "https://youtu.be/7wtfhZwyrcc"),
+                        new Lagu("Hymn For The Weekend", "Coldplay", 2018,
+                                "Pop", "https://youtu.be/YykjpeuMNEk")
                 );
             });
         }
