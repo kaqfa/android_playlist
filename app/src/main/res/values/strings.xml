@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PlayList Music</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="genres_array">
+        <item>Pop</item>
+        <item>Rock</item>
+        <item>Jazz</item>
+        <item>Hardcore</item>
+    </string-array>
+</resources>
