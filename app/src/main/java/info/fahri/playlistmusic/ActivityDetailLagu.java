@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import info.fahri.playlistmusic.database.AppDatabase;
 import info.fahri.playlistmusic.database.Lagu;
 
 public class ActivityDetailLagu extends AppCompatActivity {
@@ -37,6 +38,9 @@ public class ActivityDetailLagu extends AppCompatActivity {
     }
 
     public void delete(View v){
+        AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
+        db.laguDAO().delete(lagu);
+
         Log.d("list_lagu", "hapus lagu: "+lagu.judul);
         finish();
     }

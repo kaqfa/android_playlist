@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import info.fahri.playlistmusic.database.AppDatabase;
 import info.fahri.playlistmusic.database.Lagu;
 
 public class ActivityInputLagu extends AppCompatActivity {
@@ -41,6 +42,8 @@ public class ActivityInputLagu extends AppCompatActivity {
 
         Lagu lagu = new Lagu(judul, artis, tahun, genre, link);
 
+        AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
+        db.laguDAO().insert(lagu);
         Log.d("list_lagu", "insert lagu baru - "+lagu.judul);
         finish();
     }

@@ -13,18 +13,23 @@ Ada tiga versi source code yang disediakan yaitu:
 
 Masing-masing versi tersimpan di masing-masing branch.
 
-Pada branch ini versi yang ditampilkan adalah versi Starter.
+Pada branch ini versi yang ditampilkan adalah versi Simple.
 
-### Versi Starter:
+### Versi Simple:
 
-Versi starter adalah source code yang berisi tampilan aplikasi minimal dengan form dan RecyclerView tanpa basis data dan masih belum bisa melakukan operasi tulis pada list lagu.
+Versi simple merupakan aplikasi jadi dari studi kasus penggunaan lokal database SQLite dengan kebutuhan minimum aplikasi.
 
-Komponen yang telah disediakan pada versi starter ini adalah:
+Pada studi kasus ini kita menggunakan Android Room Database yang merupakan wrapper dari SQLite dengan tanpa mempertimbangan multi thread dan View Model.
 
-- ActivityMain yg dibuat dengan Basic Activity dengan ditambahi RecyclerView
-- PlaylistAdapter, adapter untuk menampilkan list lagu pada RecyclerView
-- Class Model Lagu, class representasi data lagu dan digunakan pada holder
-- ActivityDetailLagu yang dibuat dengan Empty Activity
-- ActivityInputLagu yang dibuat dengan Empty Activity
+Untuk kebutuhan real world application mungkin cara ini tidak terlalu direkomendasikan, namun sebagai dasar memahami cara pembuatan aplikasi android dengan basis data lokal, cara ini sudah cukup bagus.
 
-Untuk melengkapi versi starter ini dengan fitur databse, silahkan check pada branc Full atau branc Simpel
+Step by step pembuatan versi simple ini meliputi:
+
+- Dimulai dari pull versi starter yang berisi activity dan layout yang diperlukan.
+- Menambahkan dependency Android Room, ViewModel, serta penggunaan Java 1.8 pada build.gradle
+- Mengubah model menjadi entity
+- Membuat DAO untuk model
+- Membuat AppDatabase untuk koneksi DB
+- Koneksi dan mengambil data pada MainActivity
+- Tambah data pada FormInputLagu
+- Menghapus data pada DetailLaguActvity

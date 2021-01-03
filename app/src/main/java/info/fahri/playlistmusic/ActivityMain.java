@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 import info.fahri.playlistmusic.adapter.PlayListAdapter;
+import info.fahri.playlistmusic.database.AppDatabase;
 import info.fahri.playlistmusic.database.Lagu;
 
 public class ActivityMain extends AppCompatActivity {
@@ -24,6 +25,8 @@ public class ActivityMain extends AppCompatActivity {
     ArrayList<Lagu> list_lagu;
     RecyclerView recListLagu;
     PlayListAdapter adapter;
+
+    AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +37,19 @@ public class ActivityMain extends AppCompatActivity {
 
         recListLagu = findViewById(R.id.rec_list_lagu);
 
+        db = AppDatabase.getDatabase(getApplicationContext());
+
         list_lagu = new ArrayList<>();
-        prePopulateList();
+
         adapter = new PlayListAdapter(list_lagu);
         recListLagu.setAdapter(adapter);
         recListLagu.setLayoutManager(new LinearLayoutManager(this));
 
+        db.laguDAO().getAllLagu().observe(this, playlist -> {
+            list_lagu.clear();
+            list_lagu.addAll(playlist);
+            adapter.notifyDataSetChanged();
+        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,15 +59,6 @@ public class ActivityMain extends AppCompatActivity {
             }
         });
 
-    }
-
-    void prePopulateList(){
-        list_lagu.add(new Lagu("Memories", "Maroon 5", 2019,
-                "Pop", "https://youtu.be/SlPhMPnQ58k"));
-        list_lagu.add(new Lagu("Believer", "Imagine Dragons", 2017,
-                "Rock", "https://youtu.be/7wtfhZwyrcc"));
-        list_lagu.add(new Lagu("Hymn For The Weekend", "Coldplay", 2018,
-                "Pop", "https://youtu.be/YykjpeuMNEk"));
     }
 
     @Override
