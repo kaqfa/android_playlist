@@ -9,7 +9,7 @@
     android:paddingTop="20dp"
     android:paddingRight="10dp"
     android:paddingBottom="10dp"
-    tools:context=".DetailLaguActivity">
+    tools:context=".ActivityDetailLagu">
 
     <TextView
         android:id="@+id/txt_detail_judul"

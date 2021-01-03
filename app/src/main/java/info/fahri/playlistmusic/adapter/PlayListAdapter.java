@@ -1,4 +1,4 @@
-package info.fahri.playlistmusic;
+package info.fahri.playlistmusic.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,10 +9,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import info.fahri.playlistmusic.ActivityDetailLagu;
+import info.fahri.playlistmusic.R;
+import info.fahri.playlistmusic.database.Lagu;
 
 public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.LaguViewHolder> {
 
@@ -33,15 +36,15 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.LaguVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlayListAdapter.LaguViewHolder holder, int position) {
-        Lagu lagu = listLagu.get(position);
+    public void onBindViewHolder(@NonNull final PlayListAdapter.LaguViewHolder holder, int position) {
+        final Lagu lagu = listLagu.get(position);
         holder.txtJudul.setText(lagu.judul);
         holder.txtArtis.setText(lagu.artis);
         holder.laguItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = holder.itemView.getContext();
-                Intent it = new Intent(context, DetailLaguActivity.class);
+                Intent it = new Intent(context, ActivityDetailLagu.class);
                 it.putExtra("lagu", lagu);
                 context.startActivity(it);
             }
