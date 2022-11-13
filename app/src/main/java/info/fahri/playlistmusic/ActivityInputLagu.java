@@ -1,10 +1,7 @@
 package info.fahri.playlistmusic;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.room.Room;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,11 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class FormInputLagu extends AppCompatActivity {
+import info.fahri.playlistmusic.database.Lagu;
+
+public class ActivityInputLagu extends AppCompatActivity {
 
     EditText edtJudul, edtArtis, edtTahun, edtLink;
     Spinner spnGenre;
-    private LaguViewModel laguViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +39,8 @@ public class FormInputLagu extends AppCompatActivity {
         String link = edtLink.getText().toString();
         String genre = spnGenre.getSelectedItem().toString();
 
-        final Lagu lagu = new Lagu(judul, artis, tahun, genre, link);
+        Lagu lagu = new Lagu(judul, artis, tahun, genre, link);
 
-        laguViewModel = new ViewModelProvider(this).get(LaguViewModel.class);
-        laguViewModel.insert(lagu);
         Log.d("list_lagu", "insert lagu baru - "+lagu.judul);
         finish();
     }

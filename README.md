@@ -13,21 +13,18 @@ Ada tiga versi source code yang disediakan yaitu:
 
 Masing-masing versi tersimpan di masing-masing branch.
 
-Pada branch ini versi yang ditampilkan adalah versi Full.
+Pada branch ini versi yang ditampilkan adalah versi Starter.
 
-### Versi Full:
+### Versi Starter:
 
-Versi full merupakan aplikasi studi kasus yang sudah jadi, dapat di-compile dan dijalankan dengan baik.
+Versi starter adalah source code yang berisi tampilan aplikasi minimal dengan form dan RecyclerView tanpa basis data dan masih belum bisa melakukan operasi tulis pada list lagu.
 
-Step by step pembuatan versi full ini meliputi:
+Komponen yang telah disediakan pada versi starter ini adalah:
 
-- Dimulai dari pull versi starter yang berisi activity dan layout yang diperlukan.
-- Menambahkan dependency Android Room, ViewModel, serta penggunaan Java 1.8 pada build.gradle
-- Mengubah model menjadi entity
-- Membuat DAO untuk model
-- Membuat AppDatabase untuk koneksi DB
-- Membuat repository untuk fleksibilitas sumber data
-- Membuat viewmodel untuk memisahkan data dari Activity / Fragment
-- Koneksi dan mengambil data pada MainActivity
-- Tambah data pada FormInputLagu
-- Menghapus data pada DetailLaguActvity
+- ActivityMain yg dibuat dengan Basic Activity dengan ditambahi RecyclerView
+- PlaylistAdapter, adapter untuk menampilkan list lagu pada RecyclerView
+- Class Model Lagu, class representasi data lagu dan digunakan pada holder
+- ActivityDetailLagu yang dibuat dengan Empty Activity
+- ActivityInputLagu yang dibuat dengan Empty Activity
+
+Untuk melengkapi versi starter ini dengan fitur databse, silahkan check pada branc Full atau branc Simpel

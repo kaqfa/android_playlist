@@ -7,7 +7,7 @@
     android:paddingLeft="10dp"
     android:paddingTop="20dp"
     android:paddingRight="10dp"
-    tools:context=".FormInputLagu">
+    tools:context=".ActivityInputLagu">
 
     <TextView
         android:id="@+id/textView"

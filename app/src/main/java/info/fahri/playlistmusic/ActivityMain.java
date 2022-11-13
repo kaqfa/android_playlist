@@ -4,27 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import info.fahri.playlistmusic.adapter.PlayListAdapter;
+import info.fahri.playlistmusic.database.Lagu;
 
-    private LaguViewModel laguViewModel;
+public class ActivityMain extends AppCompatActivity {
+
     ArrayList<Lagu> list_lagu;
     RecyclerView recListLagu;
     PlayListAdapter adapter;
@@ -39,25 +35,29 @@ public class MainActivity extends AppCompatActivity {
         recListLagu = findViewById(R.id.rec_list_lagu);
 
         list_lagu = new ArrayList<>();
+        prePopulateList();
         adapter = new PlayListAdapter(list_lagu);
         recListLagu.setAdapter(adapter);
         recListLagu.setLayoutManager(new LinearLayoutManager(this));
 
-        laguViewModel = new ViewModelProvider(this).get(LaguViewModel.class);
-        laguViewModel.getSemuaLagu().observe(this, playlist -> {
-            list_lagu.clear();
-            list_lagu.addAll(playlist);
-            adapter.notifyDataSetChanged();
-        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(), FormInputLagu.class));
+                startActivity(new Intent(getBaseContext(), ActivityInputLagu.class));
             }
         });
 
+    }
+
+    void prePopulateList(){
+        list_lagu.add(new Lagu("Memories", "Maroon 5", 2019,
+                "Pop", "https://youtu.be/SlPhMPnQ58k"));
+        list_lagu.add(new Lagu("Believer", "Imagine Dragons", 2017,
+                "Rock", "https://youtu.be/7wtfhZwyrcc"));
+        list_lagu.add(new Lagu("Hymn For The Weekend", "Coldplay", 2018,
+                "Pop", "https://youtu.be/YykjpeuMNEk"));
     }
 
     @Override

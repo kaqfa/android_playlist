@@ -1,8 +1,6 @@
 package info.fahri.playlistmusic;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,7 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-public class DetailLaguActivity extends AppCompatActivity {
+import info.fahri.playlistmusic.database.Lagu;
+
+public class ActivityDetailLagu extends AppCompatActivity {
 
     TextView txtJudul, txtArtis, txtGenre;
     Lagu lagu;
@@ -37,8 +37,6 @@ public class DetailLaguActivity extends AppCompatActivity {
     }
 
     public void delete(View v){
-        LaguViewModel laguViewModel = new ViewModelProvider(this).get(LaguViewModel.class);
-        laguViewModel.delete(lagu);
         Log.d("list_lagu", "hapus lagu: "+lagu.judul);
         finish();
     }
