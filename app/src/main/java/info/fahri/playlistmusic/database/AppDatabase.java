@@ -20,7 +20,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     AppDatabase.class, "playlist_musik")
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
-                    .addCallback(preCallback)
+//                    .addCallback(preCallback)
                     .build();
         }
         return INSTANCE;
